@@ -376,7 +376,7 @@
   , menuAlign:  'left'
   , menuMargin: '10px'
   , item:       '<li><a href="#"></a></li>'
-  , restoreOn:  true
+  , autoRestore:  true
 
   }
 

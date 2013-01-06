@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>bootstrap-multivalue example</title>
+
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+        <form class="form-horizontal">
+          <h3>bootstrap-multivalue example</h3>
+          <div class="row-fluid">
+              <fieldset>
+
+                <div class="control-group">
+                  <label class="control-label" for="tags">input</label>
+                  <div class="controls">
+                      <input class="input-medium" type="text" id="tags" placeholder="tag">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="language">typeahead</label>
+                  <div class="controls">
+                      <input class="input-medium" type="text" id="language" placeholder="language">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="date">datepicker</label>
+                  <div class="controls">
+                      <input class="input-medium" type="text" id="date" placeholder="date">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-primary">submit</button>
+                  </div>
+                </div>
+              </fieldset>
+
+             
+          </div>
+        </form>
+    </div> <!-- /container -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <script src="js/bootstrap-multivalue.js"></script>
+  </body>
+<script>
+$(function() {
+  $('#tags').multivalue() 
+
+  $('#language')
+    .attr('autocomplete','off') // fix for chrome
+    .typeahead({
+        source:['c++','javascrpit','php','python','ruby']
+      , minLength: 0
+      })
+    .multivalue({values:['php','ruby']}) 
+    .val('javascript')
+   
+  $('#date')
+    .attr('autocomplete','off') // fix for chrome
+    .datepicker()
+    .multivalue() 
+    
+  $('form').submit(function(){alert('submit')})
+   
+   
+});
+
+  
+	
+</script>
+</html>

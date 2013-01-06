@@ -16,7 +16,9 @@ Use with typeahead to simulate [tags manager](http://welldonethings.com/tags/man
 ######
     $('#tags').typeahead({source:['Java','Php','Python','Ruby']}).multivalue();
 
-Use with [datepicker (extensible)](https://github.com/eternicode/bootstrap-datepicker/tree/extensible) to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/)
+Use with [datepicker](http://www.eyecon.ro/bootstrap-datepicker/),
+(recommend using [extensible branch](https://github.com/eternicode/bootstrap-datepicker/tree/extensible) or my [thai extension](https://github.com/jojosati/bootstrap-datepicker-thai))
+to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/) 
 
     <input type="text" id="period">
 ######
@@ -162,7 +164,7 @@ Revert the stored value back to input's value (with seperator).
 
 The multivalue includes some keyboard navigation:
 
-### enter, seperator (default is comma)
+### enter, seperator (a comma or whatever define in options)
 
 Push value from input to store.
 
