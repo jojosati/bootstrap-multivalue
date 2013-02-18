@@ -6,6 +6,8 @@
 
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" media="screen">
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet" />
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,41 +17,45 @@
 
   <body>
     <div class="container-fluid">
-        <form class="form-horizontal">
-          <h3>bootstrap-multivalue example</h3>
-          <div class="row-fluid">
-              <fieldset>
-                <legend></legend>
-                <div class="control-group">
-                  <label class="control-label" for="tags">input</label>
-                  <div class="controls">
-                      <input class="input-medium" type="text" id="tags" placeholder="tag">
+      <div class="row-fluid">
+      <div class="span6">
+        <div id="example_html">
+          <form class="form-horizontal">
+            <h3>bootstrap-multivalue example</h3>
+            <div class="row-fluid">
+                <fieldset>
+                  <legend></legend>
+                  <div class="control-group">
+                    <label class="control-label" for="tags">input</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="tags" placeholder="tag">
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  <label class="control-label" for="language">typeahead</label>
-                  <div class="controls">
-                      <input class="input-medium" type="text" id="language" placeholder="language">
+                  <div class="control-group">
+                    <label class="control-label" for="language">typeahead</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="language" placeholder="language">
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  <label class="control-label" for="date">datepicker</label>
-                  <div class="controls">
-                      <input class="input-medium" type="text" id="date" placeholder="date">
+                  <div class="control-group">
+                    <label class="control-label" for="date">datepicker</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="date" placeholder="date">
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  <div class="controls">
-                    <button type="submit" class="btn btn-primary">submit</button>
+                  <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn btn-primary">submit</button>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
-             
-          </div>
-        </form>
+                </fieldset>
+               
+            </div>
+          </form>
+        </div>
         <div class="well">
           <h4>Component integration test.</h4>
           <p>
@@ -65,40 +71,77 @@
             or jojosati's <a href="https://github.com/jojosati/bootstrap-datepicker-thai#readme">extensible with thai-date branch</a>
           </p>
         </div>
+      </div>
+      <div class="span6">
+        <div>
+          <h3>Example HTML</h3>
+          <pre class="pre-scrollable prettyprint linenums" data-source="#example_html">
+          </pre>
+        </div>
+        <div>
+          <h3>Example Script</h3>
+          <pre class="pre-scrollable prettyprint linenums" data-source="#example_script">
+          </pre>
+        </div>
+      </div>
+      </div>
     </div> <!-- /container -->
-
     
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
     <script src="http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
     <script src="js/bootstrap-multivalue.js"></script>
-  </body>
-<script>
-$(function() {
-  $('#tags').multivalue() 
 
-  $('#language')
-    .attr('autocomplete','off') // fix for chrome
-    .typeahead({
-        source:['c++','javascrpit','php','python','ruby']
-      , minLength: 0
-      })
-    .multivalue({values:['php','ruby']}) 
-    .val('javascript')
-   
-  $('#date')
-    .attr('autocomplete','off') // fix for chrome
-    .datepicker()
-    .multivalue() 
+    <script id='example_script' type='text/javascript'>
+      function example() {
+        $('#tags').multivalue() 
+
+        $('#language')
+          .attr('autocomplete','off') // fix for chrome
+          .typeahead({
+              source:['c++','javascrpit','php','python','ruby']
+            , minLength: 0
+            })
+          .multivalue({values:['php','ruby']}) 
+          .val('javascript')
+         
+        $('#date')
+          .attr('autocomplete','off') // fix for chrome
+          .datepicker()
+          .multivalue() 
+          
+        $('form').submit(function(){alert('submit')})
+      }
+    </script>
+    <script type="text/javascript">
+      $(function(){
+        $('[data-source]').each(function(){
+          var $this = $(this),
+            $source = $($this.data('source'));
+
+          var text = [];
+          $source.each(function(){
+            var $s = $(this);
+            if ($s.attr('type') == 'text/javascript'){
+              text.push($s.html().replace(/(\n)*/, ''));
+            } else {
+              text.push($s.clone().wrap('<div>').parent().html());
+            }
+          });
+          
+          $this.text(text.join('\n\n').replace(/\t/g, '    '));
+        });
+
+        prettyPrint();
+        example();
+      });
+    </script>
     
-  $('form').submit(function(){alert('submit')})
-   
-   
-});
-
+</body>
   
-	
-</script>
+
+
 </html>

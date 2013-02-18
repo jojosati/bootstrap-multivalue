@@ -14,7 +14,9 @@ Use with typeahead to simulate [tags manager](http://welldonethings.com/tags/man
 
     <input type="text" id="tags">
 ######
-    $('#tags').typeahead({source:['Java','Php','Python','Ruby']}).multivalue();
+    $('#tags')
+    .typeahead({source:['Java','Php','Python','Ruby']})
+    .multivalue();
 
 Use with [datepicker](http://www.eyecon.ro/bootstrap-datepicker/),
 (recommend using [extensible branch](https://github.com/eternicode/bootstrap-datepicker/tree/extensible) or my [thai extension](https://github.com/jojosati/bootstrap-datepicker-thai))
@@ -22,8 +24,10 @@ to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-rang
 
     <input type="text" id="period">
 ######
-    $('#period').datepicker({todaytHighlight:true, forceParse:false}).multivalue({items:2, seperator:' - '});
-	
+    $('#period')
+    .datepicker({todaytHighlight:true, forceParse:false})
+    .multivalue({items:2, seperator:' - '});
+  
 
 ## Dependencies
 
@@ -33,7 +37,7 @@ Requires bootstrap's pagination component for some styles.
 
 ### values
 
-Array.  Default: []
+Array.  Default: undefined
 
 Predefined stored values.
 
@@ -49,9 +53,7 @@ Number of maximum stored values, 0 means unlimit.
 
 ### menu
 
-String.  Default: 
-
-    '<div class="pagination" style="margin:0 0 0 0;"><ul></ul></div>'
+String.  Default: `'<div class="multivalue-store"></div>'`
 
 ### menuAlign
 
@@ -63,26 +65,20 @@ String.  Default: '10px'
 
 ### item
 
-String.  Default: 
-
-    '<li><a href="#"></a></li>'
+String.  Default: `'<span class="btn btn-small"></span>'`
 
 ### pushBtn
 
 String.  Default: undefined
 
-If undefined, use default 
-
-    '<b class="label label-info">&crarr;</b>'
+If undefined, use default `'<b class="label label-info">&crarr;</b>'`
 
 ### popBtn
 
 String.  Default: undefined
 
-If undefined, use default 
+If undefined, use default `'<b class="label label-info">'+sign+''</b>'`
 
-    '<b class="label label-info">'+sign+''</b>'
-######
 sign should be seperator, except could looked up from 
 
     sepSigns: {
@@ -90,19 +86,17 @@ sign should be seperator, except could looked up from
       , '-' : '&minus;'
       , '~' : '&sim;'
       , '*' : '&loast;'
-    }	
+    }  
 
 ### removeBtn
 
 String.  Default: undefined
 
-If undefined, use default 
-
-    '<b class="muted">&times;</b> '
+If undefined, use default `'<b class="muted">&times;</b> '`
 
 ### autoRestore
 
-Boolean, Object, String.	Default: true	
+Boolean, Object, String.  Default: true  
 
 Try to bind 'event' to parent 'selector', to trigger auto-restore.
 if false, disable auto-restore
@@ -164,7 +158,7 @@ Revert the stored value back to input's value (with seperator).
 
 The multivalue includes some keyboard navigation:
 
-### enter, seperator (a comma or whatever define in options)
+### enter, seperator (a comma or whatever defined in options)
 
 Push value from input to store.
 
