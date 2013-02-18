@@ -126,6 +126,7 @@
             .show()
           break
       }
+      this.$menu.css('max-width',this.$element.width()*1.5)
       
       this.shown = true
       var plugin
@@ -165,40 +166,43 @@
       var sign = this.seperator.trim()
 
       if (sign in this.sepSigns) sign = this.sepSigns[sign]
-      return '<b class="label">'+sign+'</b>'
+      return '<b class="label label-info">'+sign+'</b>'
     }
     return this.options.pushBtn
   }
 
   , removeBtn: function() {
     if (this.options.removeBtn == undefined)
-      return  '<b class="muted">&times;</b> '
+      return  '<b class="label">&times;</b> '
     return this.options.removeBtn
   }
   
   , renderItem: function(cls,data,html) {
-      var i     = $(this.options.item)
+      var $i     = $(this.options.item)
                     .addClass('multivalue-'+cls)
                     .attr('data-value',data)
-        , $cell = i.find('.multivalue-cell')
+        , $cell = $i.find('.multivalue-cell')
         
-      if (!$cell.length) $cell = i.find('a:first')
-      
+      if (!$cell.length) $cell = $i.find('a:first')
+      if (!$cell.length) $cell = $i
       $cell.html(html)
       //if (cls=='pop') $cell.attr('tabindex','-1')
-      return i[0]
+      return $i[0]
   }
 
   , render: function () {
   
       var that    = this
         , items   = this.values
-        , $store  = this.$menu.find('.multivalue-store')
-
-      if (!$store.length) $store = this.$menu.find('ul:first')
+        , $store  = this.$menu
+        , selector= '.multivalue-store'
         
+      if (!$store.is(selector))
+        $store = $store.find(selector)
+        
+      if (!$store.length) $store = this.$menu.find('ul:first')
+      
       if ($store.length) {
-
         items = $(items).map(function (i, item) {
           return that.renderItem('item',item,that.removeBtn()+item)
         })
@@ -321,8 +325,11 @@
 
   , click: function (e) {
       var that = this
-        , $target = $(e.target).parents('li,.multivalue-item,.multivalue-push,.multivalue-pop')
-        
+        , $target = $(e.target)
+        , selector = 'li,.multivalue-item,.multivalue-push,.multivalue-pop'
+      if (!$target.is(selector))
+        $target = $target.parents(selector)
+      
       if ($target.length) {
         e.stopPropagation()
         e.preventDefault()
@@ -372,10 +379,12 @@
   }
 
   $.fn.multivalue.defaults = {
-    menu:       '<div><div class="pagination" style="margin:0 0 0 0;"><ul></ul></div></div>'
+  //menu:       '<div><div class="pagination" style="margin:0;"><ul></ul></div></div>'
+    menu:       '<div class="multivalue-store"></div>'
+//, item:       '<li><a href="#"></a></li>'
+  , item:       '<span class="btn btn-small"></span>'
   , menuAlign:  'left'
   , menuMargin: '10px'
-  , item:       '<li><a href="#"></a></li>'
   , autoRestore:  true
 
   }
