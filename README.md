@@ -12,7 +12,7 @@ See [demo](http://jojosati.github.com/bootstrap-multivalue/demo).
 ######
     $('#tags').multivalue();
 
-or simply declare data-coprovide with no script.
+or simply declare data-coprovide with no more script.
 
     <input type="text" data-coprovide="multivalue">
     
@@ -26,7 +26,7 @@ to simulate [tags manager](http://welldonethings.com/tags/manager)
       .typeahead({source:['Java','Php','Python','Ruby']})
       .multivalue();
     
-or simply declare data-coprovide with no script.
+or simply declare data-coprovide with no more script.
 
     <input type="text" 
       data-provide="typeahead" data-source='["Java","Php","Python","Ruby"]'
@@ -43,7 +43,7 @@ to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-rang
       .datepicker({todaytHighlight:true, forceParse:false})
       .multivalue({items:1, seperator:' - '});
   
-or simply define data-coprovide with no script.
+or simply declare data-coprovide with no more script.
 note - only thai extension that support data-provide declaration.
 
     <input type="text" 
