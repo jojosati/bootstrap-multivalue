@@ -1,37 +1,54 @@
-# Home
+# [Bootstrap Multivalue](http://jojosati.github.com/bootstrap-multivalue)
 
 Multivalue wraps a native input or any javascript input widget to accept multiple values.
 
-# Example
+See [demo](http://jojosati.github.com/bootstrap-multivalue/demo).
 
-Use with native input
+# Using multivalue
+
+#### Use with native input
 
     <input type="text" id="tags">
 ######
     $('#tags').multivalue();
 
-Use with typeahead to simulate [tags manager](http://welldonethings.com/tags/manager)
+or simply declare data-coprovide with no script.
+
+    <input type="text" data-coprovide="multivalue">
+    
+#### Use with [typeahead](http://twitter.github.com/bootstrap/javascript.html#typeahead) 
+
+to simulate [tags manager](http://welldonethings.com/tags/manager)
 
     <input type="text" id="tags">
 ######
     $('#tags')
-    .typeahead({source:['Java','Php','Python','Ruby']})
-    .multivalue();
+      .typeahead({source:['Java','Php','Python','Ruby']})
+      .multivalue();
+    
+or simply declare data-coprovide with no script.
 
-Use with [datepicker](http://www.eyecon.ro/bootstrap-datepicker/),
-(recommend using [extensible branch](https://github.com/eternicode/bootstrap-datepicker/tree/extensible) or my [thai extension](https://github.com/jojosati/bootstrap-datepicker-thai))
-to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/) 
+    <input type="text" 
+      data-provide="typeahead" data-source='["Java","Php","Python","Ruby"]'
+      data-coprovide="multivalue">
+
+#### Use with [datepicker](http://www.eyecon.ro/bootstrap-datepicker/)
+
+Recommend using [eternicode's repo](https://github.com/eternicode/bootstrap-datepicker) or [thai extension](https://github.com/jojosati/bootstrap-datepicker-thai)
+to simulate [daterangepicker](http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/).
 
     <input type="text" id="period">
 ######
     $('#period')
-    .datepicker({todaytHighlight:true, forceParse:false})
-    .multivalue({items:2, seperator:' - '});
+      .datepicker({todaytHighlight:true, forceParse:false})
+      .multivalue({items:1, seperator:' - '});
   
+or simply define data-coprovide with no script.
+note - only thai extension that support data-provide declaration.
 
-## Dependencies
-
-Requires bootstrap's pagination component for some styles.
+    <input type="text" 
+      data-provide="datepicker" 
+      data-coprovide="multivalue">
 
 ## Options
 
