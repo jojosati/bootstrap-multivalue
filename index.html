@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bootstrap-multivalue by jojosati</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Bootstrap-multivalue</h1>
+        <p class="header">Multivalue wraps a native input or any javascript input widget to accept multiple values.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/jojosati/bootstrap-multivalue/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/jojosati/bootstrap-multivalue/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/jojosati/bootstrap-multivalue">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/jojosati">jojosati</a></p>
+
+
+      </header>
+      <section>
+        <h1><a href="http://jojosati.github.com/bootstrap-multivalue">Bootstrap Multivalue</a></h1>
+
+<p>Multivalue wraps a native input or any javascript input widget to accept multiple values.</p>
+
+<p>See <a href="http://jojosati.github.com/bootstrap-multivalue/demo">demo</a>.</p>
+
+<h1>Using multivalue</h1>
+
+<h4>Use with native input</h4>
+
+<pre><code>&lt;input type="text" id="tags"&gt;
+</code></pre>
+
+<pre><code>$('#tags').multivalue();
+</code></pre>
+
+<p>or simply declare data-coprovide with no more script.</p>
+
+<pre><code>&lt;input type="text" data-coprovide="multivalue"&gt;
+</code></pre>
+
+<h4>Use with <a href="http://twitter.github.com/bootstrap/javascript.html#typeahead">typeahead</a>
+</h4>
+
+<p>to simulate <a href="http://welldonethings.com/tags/manager">tags manager</a></p>
+
+<pre><code>&lt;input type="text" id="tags"&gt;
+</code></pre>
+
+<pre><code>$('#tags')
+  .typeahead({source:['Java','Php','Python','Ruby']})
+  .multivalue();
+</code></pre>
+
+<p>or simply declare data-coprovide with no more script.</p>
+
+<pre><code>&lt;input type="text" 
+  data-provide="typeahead" data-source='["Java","Php","Python","Ruby"]'
+  data-coprovide="multivalue"&gt;
+</code></pre>
+
+<h4>Use with <a href="http://www.eyecon.ro/bootstrap-datepicker/">datepicker</a>
+</h4>
+
+<p>Recommend using <a href="https://github.com/eternicode/bootstrap-datepicker">eternicode's repo</a> or <a href="https://github.com/jojosati/bootstrap-datepicker-thai">thai extension</a>
+to simulate <a href="http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/">daterangepicker</a>.</p>
+
+<pre><code>&lt;input type="text" id="period"&gt;
+</code></pre>
+
+<pre><code>$('#period')
+  .datepicker({todaytHighlight:true, forceParse:false})
+  .multivalue({items:1, seperator:' - '});
+</code></pre>
+
+<p>or simply declare data-coprovide with no more script.
+note - only thai extension that support data-provide declaration.</p>
+
+<pre><code>&lt;input type="text" 
+  data-provide="datepicker" 
+  data-coprovide="multivalue"&gt;
+</code></pre>
+
+<h2>Options</h2>
+
+<h3>values</h3>
+
+<p>Array.  Default: undefined</p>
+
+<p>Predefined stored values.</p>
+
+<h3>seperator</h3>
+
+<p>String.  Default: ','</p>
+
+<h3>items</h3>
+
+<p>Integer.  Default: 0</p>
+
+<p>Number of maximum stored values, 0 means unlimit.</p>
+
+<h3>menu</h3>
+
+<p>String.  Default: <code>'&lt;div class="multivalue-store"&gt;&lt;/div&gt;'</code></p>
+
+<h3>menuAlign</h3>
+
+<p>String.  Default: 'left'</p>
+
+<h3>menuMargin</h3>
+
+<p>String.  Default: '10px'</p>
+
+<h3>item</h3>
+
+<p>String.  Default: <code>'&lt;span class="btn btn-small"&gt;&lt;/span&gt;'</code></p>
+
+<h3>pushBtn</h3>
+
+<p>String.  Default: undefined</p>
+
+<p>If undefined, use default <code>'&lt;b class="label label-info"&gt;&amp;crarr;&lt;/b&gt;'</code></p>
+
+<h3>popBtn</h3>
+
+<p>String.  Default: undefined</p>
+
+<p>If undefined, use default <code>'&lt;b class="label label-info"&gt;'+sign+''&lt;/b&gt;'</code></p>
+
+<p>sign should be seperator, except could looked up from </p>
+
+<pre><code>sepSigns: {
+    ',' : '&amp;sbquo;'
+  , '-' : '&amp;minus;'
+  , '~' : '&amp;sim;'
+  , '*' : '&amp;loast;'
+}  
+</code></pre>
+
+<h3>removeBtn</h3>
+
+<p>String.  Default: undefined</p>
+
+<p>If undefined, use default <code>'&lt;b class="muted"&gt;&amp;times;&lt;/b&gt; '</code></p>
+
+<h3>autoRestore</h3>
+
+<p>Boolean, Object, String.  Default: true  </p>
+
+<p>Try to bind 'event' to parent 'selector', to trigger auto-restore.
+if false, disable auto-restore
+if true, using default </p>
+
+<pre><code>{selector: 'form', event: 'submit', callback: function(){this.restore().lookup()}}.
+</code></pre>
+
+<p>if String, means override the default selector.
+if Object, could override some or all properties of default.</p>
+
+<h2>Methods</h2>
+
+<h3>.multivalue(options)</h3>
+
+<p>Initializes a multivalue.</p>
+
+<h3>show</h3>
+
+<p>Arguments: None</p>
+
+<p>Show the stored values menu.</p>
+
+<pre><code>$('#input').multivalue('show');
+</code></pre>
+
+<h3>hide</h3>
+
+<p>Arguments: None</p>
+
+<p>Hide the stored values menu.</p>
+
+<pre><code>$('#input').multivalue('hide');
+</code></pre>
+
+<h3>lookup</h3>
+
+<p>Arguments: None</p>
+
+<p>Hide the menu if stored values is empty, otherwise show.</p>
+
+<pre><code>$('#input').multivalue('lookup');
+</code></pre>
+
+<h3>store</h3>
+
+<p>Arguments: None</p>
+
+<p>Push the input value to stored value.</p>
+
+<pre><code>$('#input').multivalue('store');
+</code></pre>
+
+<h3>restore</h3>
+
+<p>Arguments: None</p>
+
+<p>Revert the stored value back to input's value (with seperator).</p>
+
+<pre><code>$('#input').multivalue('restore');
+</code></pre>
+
+<h2>Keyboard support</h2>
+
+<p>The multivalue includes some keyboard navigation:</p>
+
+<h3>enter, seperator (a comma or whatever defined in options)</h3>
+
+<p>Push value from input to store.</p>
+
+<h3>backspace</h3>
+
+<p>Delete the lastest stored value item.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
