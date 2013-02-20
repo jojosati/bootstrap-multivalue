@@ -404,13 +404,32 @@
  /* Multivalue DATA-API
   * ================== */
 
-  $(document).on('focus.multivalue.data-api', '[data-provide="multivalue"]', function (e) {
+  $(document).on('focus.multivalue.data-api','input[data-coprovide~="multivalue"]',function (e) {
     var $this = $(this)
-    
     if ($this.data('multivalue')) return
     
     e.preventDefault()
-    $this.multivalue($this.data())
+    var option = $this.data('multivalue-option') || {}
+    switch (typeof option){
+      case 'object':
+        break
+      case 'number':
+        option = {items: option}
+        break
+      case 'string' :
+        if (option.length==1){
+          option = {seperator: option}
+          break
+        }
+        if (option.match(/^(left|right|top|bottom)$/)){
+          option = {menuAlign: option}
+          break
+        }
+      default:
+        option = {}
+        break
+    }
+    $this.multivalue(option)
   })
 
 }(window.jQuery);

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>bootstrap-multivalue demo</title>
+
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="http://eternicode.github.com/bootstrap-datepicker/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" media="screen">
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>Bootstrap-Multivalue <small><a href="http://github.com/jojosati/bootstrap-multivalue">bootstrap-multivalue.js</a></small></h1>
+        <div class="pull-left" style="min-width:30%;">
+          <h3>Demo</h3>
+          <div id="example_html">
+            <form>
+              <label class="control-label" for="tags">input</label>
+              <input class="input-medium" 
+                type="text" id="tags" placeholder="tag"
+                data-coprovide="multivalue">
+
+              <label class="control-label" for="language">typeahead</label>
+              <input class="input-medium" 
+                type="text" id="language" placeholder="language" autocomplete="off"
+                value="javascript" 
+                data-coprovide="multivalue" data-multivalue-option='{"values":["php","ruby"],"menuAlign":"top"}'
+                data-provide="typeahead" data-source='["c++","javascrpit","php","python","ruby"]'>
+
+              <label class="control-label" for="date">datepicker</label>
+              <input class="input-medium datepicker" 
+                type="text" id="date" placeholder="date" autocomplete="off"
+                data-coprovide="multivalue" data-multivalue-option='{"seperator":" - ","items":1}'
+                >
+                
+              <div>
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h3>HTML</h3>
+            <pre class="pre-scrollable prettyprint linenums" data-source="#example_html"></pre>
+          </div>
+          <div>
+            <h3>SCRIPT</h3>
+            <pre class="pre-scrollable prettyprint linenums" data-source="#example_script"></pre>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="well">
+          <h4>Component integration test.</h4>
+          <p>
+            bootstrap <a href="http://twitter.github.com/bootstrap/javascript.html#typeahead">typeahead</a>
+          </p>
+          <p>
+            Stefan Petre's <a href="http://www.eyecon.ro/bootstrap-datepicker">datepicker original</a>, 
+          </p>
+          <p>
+            or eternicode's <a href="https://eternicode.github.com/bootstrap-datepicker">datepicker</a>, 
+          </p>
+          <p>
+            or jojosati's <a href="https://jojosati.github.com/bootstrap-datepicker-thai">datepicker-thai</a>.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>maintained by <a href="http://github.com/jojosati">jojosati</a></p>
+      </footer>
+    </div> <!-- /container -->
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://eternicode.github.com/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <script src="js/bootstrap-multivalue.js"></script>
+
+    <script id="example_script" type="text/javascript">
+      function demo(){
+        $('.datepicker').datepicker({forceParse:false});
+      }
+    </script>
+    <script type="text/javascript">
+      $(function(){
+        $('pre[data-source]').each(function(){
+          var $this = $(this),
+            $source = $($this.data('source'));
+
+          var text = [];
+          $source.each(function(){
+            var $s = $(this);
+            if ($s.attr('type') == 'text/javascript'){
+              text.push($s.html().replace(/(\n)*/, ''));
+            } else {
+              text.push($s.clone().wrap('<div>').parent().html()
+                .replace(/(\"(?=[[{]))/g,'\'')
+                .replace(/\]\"/g,']\'').replace(/\}\"/g,'\'') // javascript not support lookbehind
+                .replace(/\&quot\;/g,'"'));
+            }
+          });
+          
+          $this.text(text.join('\n\n').replace(/\t/g, '    '));
+        });
+
+        prettyPrint();
+        demo();
+      });
+    </script>
+    
+</body>
+</html>
