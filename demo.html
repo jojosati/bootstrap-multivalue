@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>bootstrap-multivalue demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="http://eternicode.github.com/bootstrap-datepicker/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" media="screen">
@@ -16,10 +17,12 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="row">
+    <div class="container-fluid">
+      <div class="row-fluid">
         <h1><a href="http://jojosati.github.com/bootstrap-multivalue">Bootstrap Multivalue</a> <small>on <a href="http://github.com/jojosati/bootstrap-multivalue">github</a></small></h1>
-        <div class="pull-left" style="min-width:30%;">
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
           <h3>Demo</h3>
           <div id="example_html">
             <form>
@@ -47,7 +50,7 @@
             </form>
           </div>
         </div>
-        <div>
+        <div class="span8">
           <div>
             <h3>HTML</h3>
             <pre class="pre-scrollable prettyprint linenums" data-source="#example_html"></pre>
@@ -58,22 +61,20 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="well">
-          <h4>Component integration test.</h4>
-          <p>
-            bootstrap <a href="http://twitter.github.com/bootstrap/javascript.html#typeahead">typeahead</a>
-          </p>
-          <p>
-            Stefan Petre's <a href="http://www.eyecon.ro/bootstrap-datepicker">datepicker original</a>, 
-          </p>
-          <p>
-            or eternicode's <a href="https://eternicode.github.com/bootstrap-datepicker">datepicker</a>, 
-          </p>
-          <p>
-            or jojosati's <a href="https://jojosati.github.com/bootstrap-datepicker-thai">datepicker-thai</a>.
-          </p>
-        </div>
+      <div class="well">
+        <h4>Component integration test.</h4>
+        <p>
+          bootstrap <a href="http://twitter.github.com/bootstrap/javascript.html#typeahead">typeahead</a>
+        </p>
+        <p>
+          Stefan Petre's <a href="http://www.eyecon.ro/bootstrap-datepicker">datepicker original</a>, 
+        </p>
+        <p>
+          or eternicode's <a href="https://eternicode.github.com/bootstrap-datepicker">datepicker</a>, 
+        </p>
+        <p>
+          or jojosati's <a href="https://jojosati.github.com/bootstrap-datepicker-thai">datepicker-thai</a>.
+        </p>
       </div>
       <hr>
       <footer>
